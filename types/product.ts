@@ -2,17 +2,6 @@
 
 import React from "react";
 
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  in_stock: boolean;
-}
-
-export type Variant = "in-stock" | "out-of-stock";
-
-
-
 export interface CardProps {
   children: React.ReactNode;
 }
@@ -26,3 +15,52 @@ export interface ModalProps {
   header: string;
   children: React.ReactNode;
 }
+
+export interface user {
+  id: string | number;
+  email : string;
+  password : string;
+}
+
+export interface Product {
+  id: string | number;
+  name: string;
+  sku: string;
+  stock: number;
+  price: number;
+  category_id?: string;
+}
+
+export interface Category {
+  id: string | number;
+  name: string;
+}
+
+export interface Orders {
+  id: string | number;
+  product_id: number;
+  quantity:number;
+}
+
+// Interface untuk item di keranjang belanja
+export interface CartItem {
+  product: Product;
+  quantity: number;
+}
+
+// Interface untuk Props komponen ProductCard
+export interface ProductCardProps {
+  product: Product;
+  onAddToCart?: (product: Product, quantity: number) => void;
+  showBadge?: boolean;
+}
+
+export type Variant = "in-stock" | "out-of-stock";
+
+
+
+
+
+
+
+

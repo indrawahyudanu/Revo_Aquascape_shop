@@ -6,14 +6,21 @@ import { Product } from "../types/product";
 import { Card, PageSection, Modal } from "../components/pageSection";
 
 
-
 const products: Product[] = [
   { id: 1, name: "Laptop Stand", price: 250000, in_stock: true },
   { id: 2, name: "Keyboard", price: 450000, in_stock: false },
   { id: 3, name: "Mouse", price: 150000, in_stock: true },
 ];
 
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+export const metadata = {
+  title: 'Home — AquascapeShop',
+  description: 'Welcome to Aquascape shop, your one-stop online store.',
+};
+
 export default function Page() {
+    
   return (
     <div>
       <Header />
@@ -33,7 +40,10 @@ export default function Page() {
       {/* <Modal header="Confirm order">
         Proceed to checkout?
       </Modal> */}
-
+      <div> <h1 className="text-xl font-bold mb-4">RevoShop Dashboard</h1>
+          <p>API Base URL: {baseUrl}</p>
+      </div>
+       
       <Footer />
     </div>
   );
