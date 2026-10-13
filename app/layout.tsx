@@ -29,6 +29,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 }
 
 const ROOT_METADATA = {
-  title: 'Aquascape Shop',
-  description: 'Your one-stop Aquascape online store.',
+  title: 'Electronic Shop',
+  description: 'Your one-stop Electronic online store.',
 };

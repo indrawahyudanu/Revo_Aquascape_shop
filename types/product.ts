@@ -25,10 +25,12 @@ export interface user {
 export interface Product {
   id: string | number;
   name: string;
-  sku: string;
+  sku?: string;
   stock: number;
   price: number;
   category_id?: string;
+  in_stock: boolean;
+  is_sale?: boolean;
 }
 
 export interface Category {
