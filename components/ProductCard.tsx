@@ -1,11 +1,12 @@
 "use client"
 
-import type { Product, Variant } from "../types/product";
+import type { Product, Variant, } from "../types/product";
 import { useState } from "react";
 
 interface ProductCardProps {
   product: Product;
   currency?: string;
+  onAddToCart?: (product: Product) => void; 
 }
 
 interface BadgeProps {
@@ -70,6 +71,7 @@ function QtySelector ({ product }: QtySelectorProps) {
 export default function ProductCard({
   product,
   currency = "Rp",
+  onAddToCart,
 }: ProductCardProps) {
   return (
     <div className={ "border border-gray-700 rounded-lg p-4 w-56 "}>
@@ -82,8 +84,23 @@ export default function ProductCard({
       </h3>
       <h3 className="font-bold text-lg">{product.name}</h3>
       <p className="mb-2 text-sm text-gray-300">{currency} {product.price.toLocaleString("id-ID")}</p>
-      <Badge variant={product.in_stock ? "in-stock" : "out-of-stock"} />
+      <Badge variant={product.stock > 0 ? "in-stock" : "out-of-stock"} />
       <QtySelector product={product}/>
+
+      {/* Tombol Add to Cart: disabled + label & warna dinamis */}
+      <button
+        onClick={() => onAddToCart?.(product)}
+        disabled={product.stock === 0}
+        className={
+        "mt-3 w-full px-4 py-2 rounded text-white text-sm transition " +
+        (product.stock > 0
+          ? "bg-blue-600 hover:bg-blue-700"
+          : "bg-gray-400 cursor-not-allowed")
+  }
+>
+  {product.stock > 0 ? "Add to Cart" : "Unavailable"}
+</button>
     </div>
   );
 }
+

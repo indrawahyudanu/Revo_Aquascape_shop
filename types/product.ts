@@ -29,7 +29,6 @@ export interface Product {
   stock: number;
   price: number;
   category_id?: string;
-  in_stock: boolean;
   is_sale?: boolean;
 }
 

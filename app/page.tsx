@@ -6,31 +6,28 @@ import Header from "../components/Header";
 import { Product } from "../types/product";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
-import CartSummary from "../components/CartSummary";
-import { CartItem } from "../types/product";
 
 
 const products: Product[] = [
-  { id: 1, name: "Laptop Stand", price: 250000, in_stock: true, stock: 5, is_sale:true },
-  { id: 2, name: "Keyboard", price: 450000, in_stock: false, stock: 3 },
-  { id: 3, name: "Mouse", price: 150000, in_stock: true, stock: 4 },
-  { id: 4, name: "CPU", price: 160000, in_stock: true, stock: 4 },
+  { id: 1, name: "Laptop Stand", price: 250000, stock: 5, is_sale:true },
+  { id: 2, name: "Keyboard", price: 450000, stock: 0},
+  { id: 3, name: "Mouse", price: 150000, stock: 4 },
+  { id: 4, name: "CPU", price: 160000, stock: 4 },
 ];
 
-
-// const cart: CartItem[] = [
-//   { product: products[0], quantity: 2 },  // Laptop Stand × 2
-//   { product: products[1], quantity: 1 },  // Keyboard × 1
-// ];
 
 //fungsi cari produck
 export default function Page() {
   const [query, setQuery] = useState("");
-
+  const [cart, setCart] = useState<Product[]>([]);
+  
   const filtered = products.filter((p) =>
     p.name.toLowerCase().includes(query.toLowerCase())
-  );
+);
 
+  const addToCart = (product: Product) => {
+    setCart([...cart, product]);
+  };
   
 
   return (
@@ -49,17 +46,10 @@ export default function Page() {
 
           <div className="p-4 flex gap-4 flex-wrap">
             {filtered.map((p) => (
-              <ProductCard key={p.id} product={p} />
+              <ProductCard key={p.id} product={p} onAddToCart={addToCart} />
+              
             ))}
           </div>
-
-
-          {/* <div>
-            
-             <CartSummary cart={cart} />
-          </div> */}
-
-         
 
       <Footer />
     </div>
